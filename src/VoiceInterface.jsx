@@ -17,11 +17,11 @@ const VoiceInterface = () => {
     };
 
     // Cleanup on unmount
-     useEffect(() => {
+    useEffect(() => {
+        //I deployed the backend separately on Render. To wake up the server from sleep, I call this health dummy API endpoint.        
         fetch('https://ch-backend-nuvq.onrender.com/health')
-        .then(res => res.json())
-        .then(data => console.log('Wake-up ping:', data))
-        .catch(err => console.error('Wake-up ping failed:', err));
+            .then(res => res.json())
+            .then(data => console.log('Wake-up ping:', data))
         return () => {
             if (recognitionRef.current) {
                 recognitionRef.current.stop();
@@ -186,7 +186,7 @@ const VoiceInterface = () => {
         abortControllerRef.current = new AbortController();
 
         try {
-            const response = await fetch('https://ch-backend-nuvq.onrender.com/api/gemini', {
+            const response = await fetch('http://localhost:5000/api/gemini', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text }),
