@@ -17,7 +17,11 @@ const VoiceInterface = () => {
     };
 
     // Cleanup on unmount
-    useEffect(() => {
+     useEffect(() => {
+        fetch('https://https://ch-backend-nuvq.onrender.com/health')
+        .then(res => res.json())
+        .then(data => console.log('Wake-up ping:', data))
+        .catch(err => console.error('Wake-up ping failed:', err));
         return () => {
             if (recognitionRef.current) {
                 recognitionRef.current.stop();
