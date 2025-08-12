@@ -186,7 +186,7 @@ const VoiceInterface = () => {
         abortControllerRef.current = new AbortController();
 
         try {
-            const response = await fetch('http://localhost:5000/api/gemini', {
+            const response = await fetch('https://ch-backend-nuvq.onrender.com/api/gemini', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text }),
